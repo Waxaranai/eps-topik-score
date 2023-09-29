@@ -56,7 +56,7 @@ export default function Home() {
   return (
     <main>
       {data?.data ? <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-[425px] md:max-w-[725px]">
+        <DialogContent className="max-w-[375px] md:max-w-[725px]">
           <DialogHeader>
             <DialogTitle>EPS Topik Score</DialogTitle>
             <DialogDescription>
@@ -81,7 +81,7 @@ export default function Home() {
                   </>
                   <>
                     <h1 className="font-bold">Score</h1>
-                    <div className="flex flex-row justify-between gap-4">
+                    <div className="flex flex-row justify-between gap-4 max-w-[375px] md:max-w-[725px]">
                       <>
                         <h1 className="font-bold">Total</h1>
                         <p>{data.data.point.total}</p>
