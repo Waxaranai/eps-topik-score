@@ -2,19 +2,20 @@ import { load } from 'cheerio';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export interface EPSTopikResult {
-    epsTopikNo: string;
-    name: string;
-    nationality: string;
-    sector: string;
-    examDate: string;
-    point: {
+    epsTopikNo?: string;
+    name?: string;
+    nationality?: string;
+    sector?: string;
+    examDate?: string;
+    point?: {
         total: number;
         listening: number;
         reading: number;
     };
+    error?: string;
 }
 
-const fetchEps = async (epsNo: string): Promise<any> => {
+const fetchEps = async (epsNo: string): Promise<EPSTopikResult> => {
     const searchParams = new URLSearchParams({
         langType: "in",
         sKorTestNo: epsNo,
@@ -61,5 +62,6 @@ export default async function GET(
     const epsNo = req.query.epsNo as string;
     if (!epsNo) return res.status(404).json({ message: "No eps topik number provided!" });
     const data = await fetchEps(epsNo);
+    if (data.error) return res.status(404).json({ message: data.error })
     res.status(200).json({ data, message: "OK" });
 }

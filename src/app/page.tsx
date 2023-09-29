@@ -52,10 +52,9 @@ export default function Home() {
       return () => clearTimeout(timer)
     }
   }, [isFetching]);
-
   return (
     <main>
-      {data?.data ? <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      {data && data.data ? <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="max-w-[375px] md:max-w-[725px]">
           <DialogHeader>
             <DialogTitle>EPS Topik Score</DialogTitle>
@@ -84,15 +83,15 @@ export default function Home() {
                     <div className="flex flex-row justify-between gap-4 max-w-[375px] md:max-w-[725px]">
                       <>
                         <h1 className="font-bold">Total</h1>
-                        <p>{data.data.point.total}</p>
+                        <p>{data.data.point?.total}</p>
                       </>
                       <>
                         <h1 className="font-bold">Reading</h1>
-                        <p>{data.data.point.reading}</p>
+                        <p>{data.data.point?.reading}</p>
                       </>
                       <>
                         <h1 className="font-bold">Listening</h1>
-                        <p>{data.data.point.listening}</p>
+                        <p>{data.data.point?.listening}</p>
                       </>
                     </div>
                   </>
