@@ -6,9 +6,18 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  DialogTitle
 } from "@/components/ui/Dialog"
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle
+} from "@/components/ui/AlertDialog";
+
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
@@ -95,7 +104,20 @@ export default function Home() {
             Exam date {data?.data?.examDate}
           </DialogFooter>
         </DialogContent>
-      </Dialog> : <></>}
+      </Dialog> :
+        <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Attention!</AlertDialogTitle>
+              <AlertDialogDescription>
+                {data?.message}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Close</AlertDialogCancel>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>}
 
       <div className="flex min-h-screen flex-col gap-3 items-center p-20 md:p-24">
         {isFetching ? <Progress value={progress} className="md:w-[60%]" /> : <>
